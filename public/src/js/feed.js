@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 /* eslint-disable func-names */
 /* eslint-disable no-undef */
 const shareImageButton = document.querySelector('#share-image-button');
