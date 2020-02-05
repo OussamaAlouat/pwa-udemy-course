@@ -36,9 +36,19 @@ self.addEventListener('fetch', function (event) {
       .then(function(resp) {
         if (resp) {
           return resp;
+        } else {
+          return fetch(event.request)
+            .then(function(response) {
+              caches.open('dynamic')
+                .then(function(cache){
+                  cache.put(event.request.url, response.clone());
+                  return response;
+                });
+            })
+            .catch(function(err) {
+              console.log(err);
+            });
         }
-
-        return fetch(event.request);
       })
   );
 
