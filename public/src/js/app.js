@@ -1,10 +1,3 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable no-console */
-/* eslint-disable func-names */
-/* eslint-disable prefer-arrow-callback */
-/* eslint-disable no-undef */
-
-// eslint-disable-next-line no-var
 var deferredPrompt;
 
 if ('serviceWorker' in navigator) {

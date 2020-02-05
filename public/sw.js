@@ -1,9 +1,3 @@
-/* eslint-disable no-console */
-/* eslint-disable func-names */
-/* eslint-disable no-undef */
-/* eslint-disable no-restricted-globals */
-/* eslint-disable prefer-arrow-callback */
-
 self.addEventListener('install', function (event) {
   console.log('[ServiceWorker] Installing service worker ...', event);
 });

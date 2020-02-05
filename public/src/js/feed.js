@@ -1,6 +1,3 @@
-/* eslint-disable no-console */
-/* eslint-disable func-names */
-/* eslint-disable no-undef */
 const shareImageButton = document.querySelector('#share-image-button');
 const createPostArea = document.querySelector('#create-post');
 const closeCreatePostModalButton = document.querySelector('#close-create-post-modal-btn');
