@@ -54,6 +54,8 @@ function createCard() {
   cardSupportingText.style.textAlign = 'center';
   var cardSaveButton = document.createElement('button');
   cardSaveButton.textContent = 'save';
+  cardSaveButton.className='mdl-button mdl-js-button mdl-button--raised mdl-button--colored';
+  cardSaveButton.style.marginLeft = '10px';
   cardSaveButton.addEventListener('click', onSavedButtonClicked);
   cardSupportingText.appendChild(cardSaveButton);
   cardWrapper.appendChild(cardSupportingText);
