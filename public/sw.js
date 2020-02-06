@@ -72,9 +72,17 @@ self.addEventListener('activate', function (event) {
 // });
 
 /* Strategy of cache only */
+// self.addEventListener('fetch', function (event) {
+//   console.log('[ServiceWorker] Fetching something ...', event);
+//   event.respondWith(
+//     caches.match(event.request)
+//   );
+// });
+
+/* Strategy of network only */
 self.addEventListener('fetch', function (event) {
   console.log('[ServiceWorker] Fetching something ...', event);
   event.respondWith(
-    caches.match(event.request)
+    fetch(event.request)
   );
 });
