@@ -65,6 +65,7 @@ function createCard() {
   cardSaveButton.textContent = 'save';
   cardSaveButton.className='mdl-button mdl-js-button mdl-button--raised mdl-button--colored';
   cardSaveButton.style.marginLeft = '10px';
+  cardSaveButton.disabled = 'true';
   cardSaveButton.addEventListener('click', onSavedButtonClicked);
   cardSupportingText.appendChild(cardSaveButton);
   cardWrapper.appendChild(cardSupportingText);
