@@ -44,29 +44,37 @@ self.addEventListener('activate', function (event) {
   return self.clients.claim();
 });
 
+// self.addEventListener('fetch', function (event) {
+//   console.log('[ServiceWorker] Fetching something ...', event);
+//   event.respondWith(
+//     caches.match(event.request)
+//       .then(function(resp) {
+//         if (resp) {
+//           return resp;
+//         } else {
+//           return fetch(event.request)
+//             .then(function(response) {
+//               caches.open(CACHE_DYNAMIC_NAME)
+//                 .then(function(cache){
+//                   cache.put(event.request.url, response.clone());
+//                   return response;
+//                 });
+//             })
+//             .catch(function(err) {
+//               return caches.open(CACHE_STATIC_NAME)
+//                 .then(function(cache) {
+//                   return cache.match('/offline.html');
+//                 });
+//             });
+//         }
+//       })
+//   );
+// });
+
+/* Strategy of cache only */
 self.addEventListener('fetch', function (event) {
   console.log('[ServiceWorker] Fetching something ...', event);
   event.respondWith(
     caches.match(event.request)
-      .then(function(resp) {
-        if (resp) {
-          return resp;
-        } else {
-          return fetch(event.request)
-            .then(function(response) {
-              caches.open(CACHE_DYNAMIC_NAME)
-                .then(function(cache){
-                  cache.put(event.request.url, response.clone());
-                  return response;
-                });
-            })
-            .catch(function(err) {
-              return caches.open(CACHE_STATIC_NAME)
-                .then(function(cache) {
-                  return cache.match('/offline.html');
-                });
-            });
-        }
-      })
   );
 });
