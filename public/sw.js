@@ -80,9 +80,20 @@ self.addEventListener('activate', function (event) {
 // });
 
 /* Strategy of network only */
+// self.addEventListener('fetch', function (event) {
+//   console.log('[ServiceWorker] Fetching something ...', event);
+//   event.respondWith(
+//     fetch(event.request)
+//   );
+// });
+
+/* Strategy first Network and then cache */
 self.addEventListener('fetch', function (event) {
   console.log('[ServiceWorker] Fetching something ...', event);
   event.respondWith(
     fetch(event.request)
+      .catch(function(err) {
+        return caches.match(event.request);
+      })
   );
 });
