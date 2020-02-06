@@ -54,7 +54,7 @@ self.addEventListener('activate', function (event) {
 //         } else {
 //           return fetch(event.request)
 //             .then(function(response) {
-//               caches.open(CACHE_DYNAMIC_NAME)
+//               return caches.open(CACHE_DYNAMIC_NAME)
 //                 .then(function(cache){
 //                   cache.put(event.request.url, response.clone());
 //                   return response;
@@ -92,6 +92,13 @@ self.addEventListener('fetch', function (event) {
   console.log('[ServiceWorker] Fetching something ...', event);
   event.respondWith(
     fetch(event.request)
+      .then(function(res) {
+        return caches.open(CACHE_DYNAMIC_NAME)
+          .then(function(cache){
+            cache.put(event.request.url, res.clone());
+            return res;
+          });
+      })
       .catch(function(err) {
         return caches.match(event.request);
       })
