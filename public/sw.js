@@ -1,5 +1,6 @@
-const CACHE_STATIC_NAME = 'static-v2';
+const CACHE_STATIC_NAME = 'static-v3';
 const CACHE_DYNAMIC_NAME = 'dynamic_v2';
+
 self.addEventListener('install', function (event) {
   console.log('[ServiceWorker] Installing service worker ...', event);
   event.waitUntil(
@@ -64,5 +65,4 @@ self.addEventListener('fetch', function (event) {
         }
       })
   );
-
 });
