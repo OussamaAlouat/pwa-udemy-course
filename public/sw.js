@@ -87,7 +87,7 @@ self.addEventListener('activate', function (event) {
 //   );
 // });
 
-/* Strategy first Network and then cache */
+/* Strategy first Network and then dynamic cache */
 self.addEventListener('fetch', function (event) {
   console.log('[ServiceWorker] Fetching something ...', event);
   event.respondWith(
