@@ -1,7 +1,7 @@
-const shareImageButton = document.querySelector('#share-image-button');
-const createPostArea = document.querySelector('#create-post');
-const closeCreatePostModalButton = document.querySelector('#close-create-post-modal-btn');
-const sharedMomentsArea = document.querySelector('#shared-moments');
+var shareImageButton = document.querySelector('#share-image-button');
+var createPostArea = document.querySelector('#create-post');
+var closeCreatePostModalButton = document.querySelector('#close-create-post-modal-btn');
+var sharedMomentsArea = document.querySelector('#shared-moments');
 
 function openCreatePostModal() {
   createPostArea.style.display = 'block';
@@ -30,19 +30,17 @@ shareImageButton.addEventListener('click', openCreatePostModal);
 
 closeCreatePostModalButton.addEventListener('click', closeCreatePostModal);
 
-function onSavedButtonClicked(event) {
+// Currently not in use, allows to save assets in cache on demand otherwise
+function onSaveButtonClicked(event) {
+  console.log('clicked');
   if ('caches' in window) {
     caches.open('user-requested')
       .then(function(cache) {
         cache.add('https://httpbin.org/get');
         cache.add('/src/images/sf-boat.jpg');
-      })
-      .catch(function(err) {
-        console.log(err);
       });
   }
 }
-
 
 function clearCards() {
   while(sharedMomentsArea.hasChildNodes()) {
@@ -60,7 +58,7 @@ function createCard() {
   cardTitle.style.height = '180px';
   cardWrapper.appendChild(cardTitle);
   var cardTitleTextElement = document.createElement('h2');
-  cardTitleTextElement.style.color ='white';
+  cardTitleTextElement.style.color = 'white';
   cardTitleTextElement.className = 'mdl-card__title-text';
   cardTitleTextElement.textContent = 'San Francisco Trip';
   cardTitle.appendChild(cardTitleTextElement);
@@ -68,28 +66,25 @@ function createCard() {
   cardSupportingText.className = 'mdl-card__supporting-text';
   cardSupportingText.textContent = 'In San Francisco';
   cardSupportingText.style.textAlign = 'center';
-  var cardSaveButton = document.createElement('button');
-  cardSaveButton.textContent = 'save';
-  cardSaveButton.className='mdl-button mdl-js-button mdl-button--raised mdl-button--colored';
-  cardSaveButton.style.marginLeft = '10px';
-  cardSaveButton.disabled = 'true';
-  cardSaveButton.addEventListener('click', onSavedButtonClicked);
-  cardSupportingText.appendChild(cardSaveButton);
+  // var cardSaveButton = document.createElement('button');
+  // cardSaveButton.textContent = 'Save';
+  // cardSaveButton.addEventListener('click', onSaveButtonClicked);
+  // cardSupportingText.appendChild(cardSaveButton);
   cardWrapper.appendChild(cardSupportingText);
   componentHandler.upgradeElement(cardWrapper);
   sharedMomentsArea.appendChild(cardWrapper);
 }
 
 var url = 'https://httpbin.org/get';
-var networkDataRecived = false;
+var networkDataReceived = false;
 
 fetch(url)
   .then(function(res) {
     return res.json();
   })
   .then(function(data) {
-    networkDataRecived = true;
-    console.log('From web: ', data);
+    networkDataReceived = true;
+    console.log('From web', data);
     clearCards();
     createCard();
   });
@@ -102,8 +97,8 @@ if ('caches' in window) {
       }
     })
     .then(function(data) {
-      console.log('From cache: ', data);
-      if(!networkDataRecived) {
+      console.log('From cache', data);
+      if (!networkDataReceived) {
         clearCards();
         createCard();
       }
