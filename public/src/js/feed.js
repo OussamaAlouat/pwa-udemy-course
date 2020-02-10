@@ -20,6 +20,18 @@ function openCreatePostModal() {
 
     deferredPrompt = null;
   }
+
+  /*
+  Unregister sw
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.getRegistrations()
+      .then(function(resgistrations) {
+        for (let i = 0; i < resgistrations.length; i++){
+          resgistrations[i].unregister();
+        }
+      });
+  }
+  */
 }
 
 function closeCreatePostModal() {
